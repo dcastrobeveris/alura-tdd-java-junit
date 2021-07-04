@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 
+import jdk.internal.org.jline.reader.impl.history.DefaultHistory;
+
 public class Funcionario {
 
 	private String nome;
@@ -29,7 +31,13 @@ public class Funcionario {
 	}
 
 	public void reajustarSalario(BigDecimal reajuste) {
-		this.salario = this.salario.add(reajuste).setScale(2, RoundingMode.HALF_UP);
+		this.salario = this.salario.add(reajuste);
+				arredondarSalario();
+		
+	}
+
+	private void arredondarSalario() {
+		this.salario =  this.salario.setScale(2, RoundingMode.HALF_UP);
 		
 	}
 
